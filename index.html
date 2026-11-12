@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Смакота</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+  body {
+    font-family: "Open Sans", sans-serif;
+    color: #0c0c0c;
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+  .cursive-font { font-family: 'Pacifico', cursive; }
+  .hero-section {
+    background-color: #14171f;
+    position: relative;
+    min-height: 100vh;
+  }
+  .navbar-nav .nav-link.active { color: #ff7a30 !important; }
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link i:hover { color: #ff7a30 !important; }
+  .btn-warning { background-color: #ff7a30; border-color: #ff7a30; }
+  .btn-warning:hover { background-color: #d9561a; border-color: #d9561a; }
+
+  .carousel-indicators [data-bs-target] {
+    background-color: #ffffff; width: 12px; height: 12px; transition: all 0.3s ease;
+  }
+  .carousel-indicators .active { background-color: #ff7a30; width: 17px; height: 17px; }
+  .carousel-item { min-height: 100vh; }
+  .slide-bg { background-size: cover; background-position: center; background-repeat: no-repeat; }
+  .slide-1 { background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://img3.akspic.ru/attachments/crops/9/8/7/9/2/129789/129789-kartofel_fri-blyuda-picca-restoran-govyadina-1920x1080.jpg'); }
+  .slide-2 { background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://bzh.life/static/img/t/a/tavernetta_1080x720.jpg?time=1762531871'); }
+  .slide-3 { background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://www.baltana.com/files/wallpapers-25/Pasta-Wallpaper-1920x1080-68167.jpg'); }
+
+  .hero-arrow {
+    width: 44px; height: 44px; top: 50%; bottom: auto; transform: translateY(-50%);
+    margin: 0 1rem; border-radius: 50%; background: rgba(0,0,0,.45);
+    opacity: 1; z-index: 15; transition: background 0.3s ease;
+  }
+  .hero-arrow:hover { background: #ff7a30; }
+  @media (max-width: 575px) { .hero-arrow { width: 36px; height: 36px; margin: 0 .5rem; } }
+
+  .hero-nav { z-index: 20; }
+  @media (max-width: 991px) {
+    .hero-nav .navbar-collapse { background: rgba(20,23,31,.95); padding: 1rem; border-radius: .5rem; }
+  }
+
+
+  .offer-image { width: 150px; height: 150px; }
+  .offer-image img, .card-image img { transition: transform 0.3s ease; }
+  .offer-image img:hover, .card-image img:hover { transform: scale(1.10); }
+  .offer-image img { width: 100%; height: 100%; }
+
+  .menu-nav .nav-item .nav-link { color: #1b1f2a; }
+  .menu-nav .nav-item .nav-link.active { background-color: #1b1f2a; color: #ffffff; }
+  .card-image { height: 280px; overflow: hidden; }
+  .card-image img { width: 100%; height: 100%; object-fit: cover; }
+
+  .review-card { border-left: 6px solid #ff7a30; }
+  .review-stars { color: #ff7a30; }
+
+  .accordion-button { background-color: #1b1f2a !important; color: #fff !important; }
+  .accordion-button:focus { box-shadow: none; }
+  .accordion-button:not(.collapsed) { background-color: #ff7a30 !important; color: #fff !important; }
+  .accordion-button::after { filter: brightness(0) invert(1); }
+  .accordion-body { background-color: #1b1f2a; color: #fff; }
+
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<div id="home-section" class="hero-section">
+  <nav class="navbar navbar-expand-lg position-absolute top-0 start-0 w-100 hero-nav" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-1 cursive-font" href="#">Смакота</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Перемкнути навігацію">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item mx-3"><a class="nav-link text-white fw-medium active" aria-current="page" href="#home-section">ГОЛОВНА</a></li>
+          <li class="nav-item mx-3"><a class="nav-link text-white fw-medium" href="#menu-section">МЕНЮ</a></li>
+          <li class="nav-item mx-3"><a class="nav-link text-white fw-medium" href="#about-section">ПРО НАС</a></li>
+          <li class="nav-item mx-3"><a class="nav-link text-white fw-medium" href="#reviews-section">ВІДГУКИ</a></li>
+          <li class="nav-item mx-3"><a class="nav-link text-white fw-medium" href="#book-table-section">БРОНЮВАННЯ</a></li>
+          <li class="nav-item mx-3"><a class="nav-link text-white fw-medium" href="#faq-section">FAQ</a></li>
+        </ul>
+
+        <ul class="navbar-nav d-flex flex-row align-items-center">
+          <li class="nav-item ms-3">
+            <a href="#" class="btn btn-warning text-white py-2 px-5 rounded-pill">Замовити онлайн</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators d-flex align-items-center">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0"
+        class="active border border-0 rounded-circle me-2" aria-current="true" aria-label="Слайд 1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+        class="border border-0 rounded-circle me-2" aria-label="Слайд 2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+        class="border border-0 rounded-circle me-2" aria-label="Слайд 3"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active slide-bg slide-1">
+        <div class="carousel-caption d-flex align-items-center start-0 end-0 text-start h-100 w-100 mb-3">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-12 col-md-6 text-start">
+                <h1 class="display-5 fw-bold cursive-font">Ресторан швидкої їжі</h1>
+                <p class="fs-5">Відкрийте для себе кулінарну подорож, де кожна страва створена з любов’ю та увагою до деталей. Скуштуйте якість у нашому ретельно підібраному меню.</p>
+                <a href="#menu-section" class="btn btn-warning text-light py-2 px-5 rounded-pill">Замовити</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item slide-bg slide-2">
+        <div class="carousel-caption d-flex align-items-center start-0 end-0 text-start h-100 w-100 mb-3">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-12 col-md-6 text-start">
+                <h1 class="display-5 fw-bold cursive-font">Найсвіжіші інгредієнти</h1>
+                <p class="fs-5">Ми готуємо лише з якісних місцевих продуктів, щоб кожен гість відчув справжній смак.</p>
+                <a href="#about-section" class="btn btn-warning text-light py-2 px-5 rounded-pill">Дізнатись більше</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item slide-bg slide-3">
+        <div class="carousel-caption d-flex align-items-center start-0 end-0 text-start h-100 w-100 mb-3">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-12 col-md-6 text-start">
+                <h1 class="display-5 fw-bold cursive-font">Швидка доставка</h1>
+                <p class="fs-5">Гаряча їжа у вашого порога за 30 хвилин. Замовляйте онлайн у кілька кліків.</p>
+                <a href="#book-table-section" class="btn btn-warning text-light py-2 px-5 rounded-pill">Забронювати стіл</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev hero-arrow" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Попередній слайд">
+      <i class="bi bi-chevron-left text-white"></i>
+    </button>
+    <button class="carousel-control-next hero-arrow" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Наступний слайд">
+      <i class="bi bi-chevron-right text-white"></i>
+    </button>
+  </div>
+</div>
+
+<section class="container py-5">
+  <div class="row g-4 justify-content-center">
+    <div class="col-lg-6 col-12">
+      <div class="card bg-dark text-white p-4 d-flex flex-column flex-md-row align-items-center">
+        <div class="offer-image border border-warning border-5 rounded-circle overflow-hidden">
+          <img src="https://img.ps.me/cdn-cgi/image/width=1024,format=webp/https://img.ps.me/13896/5f6d725b-a4f1-4f15-b5f1-28e8c36f6d55_image.webp" alt="Смачні четверги" class="img-fluid object-fit-cover">
+        </div>
+        <div class="ms-md-4 mt-4 mt-md-2">
+          <h3 class="cursive-font">Смачні вихідні</h3>
+          <h2 class="display-5 cursive-font">20% <span class="fs-5 text-white">знижка</span></h2>
+          <a href="#" class="btn btn-warning text-light py-2 px-4 rounded-pill mt-2">
+            Замовити <i class="bi bi-basket3-fill fs-5 ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-12">
+      <div class="card bg-dark text-white p-4 d-flex flex-column flex-md-row align-items-center">
+        <div class="offer-image border border-warning border-5 rounded-circle overflow-hidden">
+          <img src="https://roll-club.dp.ua/wp-content/uploads/2024/02/pizza-recipe.jpg" alt="Дні піци" class="img-fluid object-fit-cover">
+        </div>
+        <div class="ms-md-4 mt-4 mt-md-2">
+          <h3 class="cursive-font">Дні піци</h3>
+          <h2 class="display-5 cursive-font">15% <span class="fs-5 text-white">знижка</span></h2>
+          <a href="#" class="btn btn-warning text-light py-2 px-4 rounded-pill mt-2">
+            Замовити <i class="bi bi-basket3-fill fs-5 ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu-section">
+  <div class="container py-5">
+    <h2 class="text-center display-5 fw-bold cursive-font mb-4">Наше меню</h2>
+
+    <ul class="nav nav-pills justify-content-center mb-5 menu-nav" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-pill px-4 active" id="pills-burger-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-burger" type="button" role="tab" aria-controls="pills-burger" aria-selected="true">Бургери</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-pill px-4" id="pills-pizza-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-pizza" type="button" role="tab" aria-controls="pills-pizza" aria-selected="false">Піца</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-pill px-4" id="pills-pasta-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-pasta" type="button" role="tab" aria-controls="pills-pasta" aria-selected="false">Паста</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-pill px-4" id="pills-fries-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-fries" type="button" role="tab" aria-controls="pills-fries" aria-selected="false">Картопля фрі</button>
+      </li>
+            <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-pill px-4" id="pills-dessert-tab" data-bs-toggle="pill"
+          data-bs-target="#pills-dessert" type="button" role="tab" aria-controls="pills-dessert" aria-selected="false">Десерти</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="pills-tabContent">
+
+      <div class="tab-pane fade show active" id="pills-burger" role="tabpanel" aria-labelledby="pills-burger-tab">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://images.gastronom.ru/OqjJxG-gLgR6wSmNRBsSdag9gmOfNHNziulWPa1p2_I/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzg5ZTFkMGI3LThmNjgtNDhiZS04MTQ2LTBlZDI5OTI3Zjc1YS5qcGc.webp" class="img-fluid" alt="Смачний бургер"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Смачний бургер</h5>
+                <p class="card-text text-light">Соковита яловича котлета, розплавлений сир, свіжий салат і стиглі помідори в тостованій булочці. Класика, яка не підводить.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">120 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://shuba.life/static/content/thumbs/1824x912/c/d3/yenxa3---c2x1x50px50p-up--f31a7ad3c4ef460fbd685719ae3d9d3c.jpg" class="img-fluid" alt="Яловичий бургер"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Яловичий бургер</h5>
+                <p class="card-text text-light">Котлета зі спецій, карамелізована цибуля та димний соус BBQ на булочці бріош.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">135 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://gymbeam.cz/blog/wp-content/uploads/2022/05/burger-do-clanku.png" class="img-fluid" alt="Хрусткий курячий бургер"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Хрусткий курячий бургер</h5>
+                <p class="card-text text-light">Ніжне хрустке куряче філе з пікантним майонезом і маринованими огірками. Легший, але не менш смачний варіант.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">110 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-pizza" role="tabpanel" aria-labelledby="pills-pizza-tab">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://tainabox.com.ua/images/store/Products/Product301/9640b2.jpg" class="img-fluid" alt="Гаваї"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Гаваї</h5>
+                <p class="card-text text-light">Томатний соус, моцарела та свіжий базилік на тонкому тісті.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">160 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://yapiko.ua/media/catalog/product/cache/90c631851bfc82ed3538a672fa9488bb/p/e/pepperoni.jpg" class="img-fluid" alt="Пепероні"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Пепероні</h5>
+                <p class="card-text text-light">Гостра ковбаска пепероні, багато сиру та томатний соус.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">99 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://family-place.vn.ua/uploads/6a1730a96a8f5.jpg" class="img-fluid" alt="Чотири сири"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Чотири сири</h5>
+                <p class="card-text text-light">Моцарела, дор блю, пармезан і чеддер для справжніх поціновувачів сиру.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">200 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-pasta" role="tabpanel" aria-labelledby="pills-pasta-tab">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://menunedeli.ru/wp-content/uploads/2022/09/Pasta-Karbonara-500%D1%85350.jpg.jpg" class="img-fluid" alt="Карбонара"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Карбонара</h5>
+                <p class="card-text text-light">Спагеті з беконом, вершковим соусом і пармезаном.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">145 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://images.gastronom.ru/_SvV0QyrSEq_8q-QalthxFcka0lo-OJMy-0iT7RoYv8/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzUyMGMzODZmLTkzYmItNGY4Yy05M2U4LTAwMjlhZTc1MmUzNi5qcGc.webp" class="img-fluid" alt="Болоньєзе"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Болоньєзе</h5>
+                <p class="card-text text-light">Класичний м’ясний соус з томатами та італійськими травами.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">140 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://avatars.mds.yandex.net/get-vertis-journal/4469561/0c8d635e-c64d-4a73-811c-359b244bc899.jpeg/1600x1600" class="img-fluid" alt="Паста з креветками"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Паста з креветками</h5>
+                <p class="card-text text-light">Тагліателе з тигровими креветками у часниковому соусі.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">175 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-fries" role="tabpanel" aria-labelledby="pills-fries-tab">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://duflu.org.ua/wp-content/uploads/2026/05/kartoplya-fri-vdoma.jpg" class="img-fluid" alt="Класична картопля фрі"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Класична фрі</h5>
+                <p class="card-text text-light">Золотиста хрустка картопля з морською сіллю.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">55 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://img.tsn.ua/cached/138/tsn-0b4bc102/thumbs/1200x630/1d/e9/7aa845b7ceae72064dda01bde9e2e91d.jpg" class="img-fluid" alt="Картопля по-селянськи"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Картопля по-селянськи</h5>
+                <p class="card-text text-light">Часточки картоплі зі шкіркою, запечені зі спеціями.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">65 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://yapiko.ua/media/catalog/product/cache/90c631851bfc82ed3538a672fa9488bb/_/-/_-100_2__4.jpg" class="img-fluid" alt="Фрі з сирним соусом"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Фрі з сирним соусом</h5>
+                <p class="card-text text-light">Хрустка картопля з гарячим сирним соусом.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">75 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="tab-pane fade" id="pills-dessert" role="tabpanel" aria-labelledby="pills-dessert-tab">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://la-torta.ua/content/uploads/images/12-cake.jpg" class="img-fluid" alt="Чизкейк Нью-Йорк"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Чизкейк Нью-Йорк</h5>
+                <p class="card-text text-light">Ніжний вершковий сир на хрусткій основі з печива та ягідним соусом.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">95 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://kondishop.com.ua/image/catalog/blog/Chokolate_icekream/Chokolate_icekream_1.jpg" class="img-fluid" alt="Морозиво з ягодами"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Морозиво з шоколадом</h5>
+                <p class="card-text text-light">Три кульки вершкового морозива зі смачним шоколадом.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">70 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow-sm border-0 rounded-4 overflow-hidden">
+              <div class="card-image"><img src="https://www.ej.kherson.ua/wp-content/uploads/2026/05/13_tiramisu-reczept-bez-yayecz_5.jpg" class="img-fluid" alt="Шоколадний фондан"></div>
+              <div class="card-body bg-dark text-white">
+                <h5 class="card-title fw-bold">Тирамісу</h5>
+                <p class="card-text text-light">Італійська класика: крем маскарпоне, печиво савоярді, натуральна кава еспресо та какао.</p>
+              </div>
+              <div class="card-footer bg-dark text-white d-flex justify-content-between align-items-center border-0">
+                <span class="fs-5">105 грн</span>
+                <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-basket3-fill fs-5 text-light"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <a href="#" class="btn btn-warning text-light py-2 px-5 rounded-pill">Дивитись більше</a>
+    </div>
+  </div>
+</section>
+<section id="about-section" class="bg-dark text-white" style="min-height: 70vh;">
+  <div class="container py-5">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-md-6 text-center order-2 order-md-1">
+        <img src="https://static.tildacdn.com/tild3464-3262-4461-b030-613734623562/otkritaya-kuhnya-kaf.jpg" alt="Бургер" class="img-fluid w-100 rounded-4 shadow" style="max-width: 560px; height: 380px; object-fit: cover;">
+      </div>
+      <div class="col-12 col-md-6 order-1 order-md-2">
+        <h2 class="display-5 fw-bold cursive-font mb-4 text-center text-md-start">Ми — Смак</h2>
+        <p class="mt-4">У «Смаку» ми віримо, що їжа - це не просто харчування, а справжній досвід. Наші кухарі ретельно добирають найкращі місцеві продукти, щоб створювати страви, які одночасно затишні та сучасні. Ми прагнемо подарувати теплу атмосферу, де кожен гість почувається як вдома.</p>
+        <a href="#" class="btn btn-warning py-2 px-5 text-light rounded-pill">Читати далі</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="reviews-section" class="bg-light">
+  <div class="container py-5">
+    <h2 class="text-center display-5 fw-bold cursive-font mb-5">Відгуки наших гостей</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <div class="col">
+        <div class="card review-card h-100 shadow-sm border-0 p-4">
+          <img src="1.jpg" alt="Фото бургера від гостя" class="w-100 rounded-3 mb-3" style="height: 200px; object-fit: cover;">
+          <h5 class="fw-bold">Найкращий піца у місті!</h5>
+          <div class="review-stars mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </div>
+          <p class="mb-3">Замовляли з друзями після пар. Піца соковита, ніжне тісто. Обов’язково прийдемо ще.</p>
+          <p class="fw-semibold mb-0 mt-auto">Владислав</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card review-card h-100 shadow-sm border-0 p-4">
+          <img src="2.jpg" alt="Фото піци від гостя" class="w-100 rounded-3 mb-3" style="height: 200px; object-fit: cover;">
+          <h5 class="fw-bold">*** я там більше зявлюсь!!!</h5>
+          <div class="review-stars mb-2">
+            <class= class="class="bi bi-star-fill></class=><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+          </div>
+          <p class="mb-3">Прокинувся о 3-й годині ночі та поїхав на швидкій до лікарні з гострим харчовим отруєнням. Тішить одне - у лікарні гарні медсестри.</p>
+          <p class="fw-semibold mb-0 mt-auto">Сергій</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card review-card h-100 shadow-sm border-0 p-4">
+          <img src="3.jpg" alt="Фото святкового столу від гостя" class="w-100 rounded-3 mb-3" style="height: 200px; object-fit: cover;">
+          <h5 class="fw-bold">Все супер, але...</h5>
+          <div class="review-stars mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </div>
+          <p class="mb-3">Все було супер. Піца та картопля фрі були дуже смачні, але під кінець ми прийняли стратегічне рішення замовити морозиво. Саме морозиво було "чотіньке", але подали його з "чмошною" ложкою. Через неї я зафаршмачив свою кофту.</p>
+          <p class="fw-semibold mb-0 mt-auto">Олександр</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="book-table-section">
+  <div class="container py-5">
+    <h2 class="text-center display-5 fw-bold cursive-font mb-4">Забронювати стіл</h2>
+    <div class="row g-4 align-items-stretch">
+      <div class="col-12 col-md-6 d-flex">
+        <form class="w-100 h-100 d-flex flex-column justify-content-start">
+          <div class="mb-3"><input type="text" class="form-control p-2" placeholder="Ваше ім’я"></div>
+          <div class="mb-3"><input type="text" class="form-control p-2" placeholder="Номер телефону"></div>
+          <div class="mb-3"><input type="email" class="form-control p-2" placeholder="Ваш email"></div>
+          <div class="mb-3">
+            <select class="form-select p-2">
+              <option selected>Скільки осіб?</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div class="mb-3"><input type="date" class="form-control p-2"></div>
+          <button type="submit" class="btn btn-warning py-2 text-light rounded-pill">ЗАБРОНЮВАТИ</button>
+        </form>
+      </div>
+      <div class="col-12 col-md-6 d-flex">
+        <iframe src="https://www.google.com/maps?q=Вінниця&output=embed"
+          class="border-0 rounded-3 w-100 h-100" style="min-height: 300px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="faq-section" class="bg-dark text-white">
+  <div class="container py-5">
+    <h2 class="text-center display-5 fw-bold cursive-font mb-4">Часті питання</h2>
+    <div class="accordion accordion-flush" id="faqAccordion" data-bs-theme="dark">
+
+      <div class="accordion-item mb-2">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Як зробити замовлення онлайн?
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#faqAccordion">
+          <div class="accordion-body rounded">Краще приходьте і замовляйте.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item mb-2">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Чи є у вас вегетаріанські та веганські страви?
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#faqAccordion">
+          <div class="accordion-body rounded">Ні, у нашому меню тільки нормальні страви.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item mb-2">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Які у вас години роботи?
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#faqAccordion">
+          <div class="accordion-body rounded">Ми працюємо щодня з 9:00 до 22:00, без вихідних.</div>
+        </div>
+      </div>
+
+      <div class="accordion-item mb-2">
+        <h2 class="accordion-header" id="flush-headingFour">
+          <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+            Чи не буде мені погано після вашої піци?
+          </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#faqAccordion">
+          <div class="accordion-body rounded">Ну тут як повезе.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<footer class="footer-section bg-dark text-light border-top border-secondary">
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col-md-4 mb-4 mb-md-0 text-center">
+        <h3 class="fw-bold cursive-font mb-3">Контакти</h3>
+        <p class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i> м. Вінниця, вул. Соборна, 1</p>
+        <p class="mb-2"><i class="bi bi-telephone-fill me-2"></i> +38 012 345 67 89</p>
+        <p class="mb-0"><i class="bi bi-envelope-fill me-2"></i> info@smakota.com</p>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0 text-center">
+        <h1 class="fw-bold cursive-font mb-3">Смак</h1>
+        <p class="mb-3">Подорож смаку та свято смаків. «Смак» - це більше, ніж ресторан: це місце, де народжуються смачна їжа та теплі спогади.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="#" class="text-light fs-5"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-light fs-5"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-light fs-5"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-light fs-5"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-light fs-5"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0 text-center">
+        <h3 class="fw-bold cursive-font mb-3">Години роботи</h3>
+        <p class="mb-2">Понеділок - Неділя</p>
+        <p class="mb-0">9:00 - 22:00</p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12 text-center small">
+        <p class="mb-1">© 2026 Всі права захищено, «Смакота»</p>
+        <p class="mb-0">Виконав: @vla_d255, група 3ОК2.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<a href="#home-section" id="backToTopBtn" class="btn btn-warning rounded-circle position-fixed bottom-0 end-0 m-3 d-none" role="button">
+  <i class="bi bi-chevron-up fs-4 text-light"></i>
+</a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+<script>
+  let backToTopBtn = document.getElementById("backToTopBtn");
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      backToTopBtn.classList.remove("d-none");
+      backToTopBtn.classList.add("d-block");
+    } else {
+      backToTopBtn.classList.remove("d-block");
+      backToTopBtn.classList.add("d-none");
+    }
+  };
+</script>
+</body>
+</html>
